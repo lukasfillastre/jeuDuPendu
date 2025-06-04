@@ -55,32 +55,15 @@ namespace JeuDuPendu
 
         static string ChoixMot()
         {
-            string motChoisi = string.Empty;
+            if (!File.Exists(FICHIER_MOTS))
+            {
+                Console.WriteLine($"Fichier introuvable : {FICHIER_MOTS}");
+            }
 
-            try
-            {
-                if (File.Exists(FICHIER_MOTS))
-                {
-                    var mots = File.ReadAllLines(FICHIER_MOTS).ToList();
-                    if (mots.Count > 0)
-                    {
-                        var aleatoire = new Random();
-                        motChoisi = mots[aleatoire.Next(mots.Count)];
-                    }
-                    else
-                    {
-                        Console.WriteLine("Le fichier est vide. Aucun mot disponible.");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine($"Fichier introuvable : {FICHIER_MOTS}");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erreur lecture fichier : {ex.Message}");
-            }
+            List<string> listeMots = File.ReadAllLines(FICHIER_MOTS).ToList();
+            Random hasard = new Random();
+            int indexAleatoire = hasard.Next(listeMots.Count);
+            string motChoisi = listeMots[indexAleatoire];
 
             return motChoisi;
         }

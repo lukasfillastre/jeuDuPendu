@@ -12,6 +12,9 @@ namespace JeuDuPendu
         const string FICHIER_MOTS = "mots.txt";
         const int MAX_ERREURS = 6;
 
+        /// <summary>
+        /// Point d'entrée du programme
+        /// </summary>
         static void Main()
         {
             var lettresJouees = new List<char>();
@@ -73,7 +76,11 @@ namespace JeuDuPendu
         }
 
 
-
+        /// <summary>
+        /// Demande à l'utilisateur de saisir une lettre.
+        /// </summary>
+        /// <param name="dejaJouees">Lettres deja jouées</param>
+        /// <returns></returns>
         static char SaisirLettre(List<char> dejaJouees)
         {
             bool continuerSaisie = true;
@@ -113,6 +120,9 @@ namespace JeuDuPendu
         /// <summary>
         /// Compte le nombre de lettres dans lettresJouees qui ne sont pas dans le mot.
         /// </summary>
+        /// <param name="lettresJouees">Lettre jouées par l'utilisateur</param>
+        /// <param name="mot">Mot a trouver</param>
+        /// <returns></returns>
         static int CompterErreurs(List<char> lettresJouees, string mot)
         {
             int erreurs = 0;
@@ -140,8 +150,10 @@ namespace JeuDuPendu
         }
 
         /// <summary>
-        /// Affiche le mot caché.
+        /// Affiche le mot caché avec les lettres trouvées et les lettres non trouvées.
         /// </summary>
+        /// <param name="mot">Mot a trouver</param>
+        /// <param name="lettresJouees">Lettre jouées par l'utilisateur</param>
         static void AfficherMotCache(string mot, List<char> lettresJouees)
         {
             foreach (char lettreTrouve in mot)
@@ -154,6 +166,9 @@ namespace JeuDuPendu
         /// <summary>
         /// Vérifie si toutes les lettres du mot ont été trouvées.
         /// </summary>
+        /// <param name="mot">Mot a trouver</param>
+        /// <param name="lettresJouees">Lettre jouées par l'utilisateur</param>
+        /// <returns></returns>
         static bool MotEntierTrouve(string mot, List<char> lettresJouees)
         {
             return mot.All(trouver => lettresJouees.Contains(trouver));
@@ -162,6 +177,7 @@ namespace JeuDuPendu
         /// <summary>
         /// Affiche la potence en fonction du nombre d'erreurs (de 0 à 6).
         /// </summary>
+        /// <param name="erreurs">Nombre d'erreurs</param>
         static void AfficherPendu(int erreurs)
         {
             string ligne1 = "+--+---";
